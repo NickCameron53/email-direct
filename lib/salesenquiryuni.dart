@@ -14,10 +14,9 @@ class Seeds {
     this.id,
     this.name,
   });
+
+
 }
-
-
-
 
 
 class EnquiryUNI extends StatefulWidget {
@@ -67,7 +66,10 @@ class _EnquiryState extends State<EnquiryUNI> {
   var _cultivars = _Seeds
       .map((product) => MultiSelectItem<Seeds>(product, product.name))
       .toList();
+
   //List<Product> _selectedSeeds = [];
+
+  //final List<String> _cultivars = _Seeds.map((product) => product.name).toList();
   List<Seeds>_selectedSeeds1 = [];
 
   final _multiSelectKey = GlobalKey<FormFieldState>();
@@ -458,7 +460,9 @@ class _EnquiryState extends State<EnquiryUNI> {
                               ),
                             ),
                             onConfirm: (results) {
-                              _cultivars = results;
+                              print(results);
+                              _selectedSeeds1 = results;
+
                             },
                           ),
 
@@ -752,6 +756,28 @@ class _EnquiryState extends State<EnquiryUNI> {
     var _seedmixed = seedmixed;
     var _seedtreatment = seedtreatment;
 
+    // Joels Testing
+    var _selectedProducts = _selectedSeeds1
+        .map((product) => product.name)
+        .toList()
+        .join(", ");
+
+    //print(_selectedProducts);
+
+    // .map((product) => MultiSelectItem<Seeds>(product, product.name))
+
+
+    //_cultivars.map((i) => a[a.id] - 1]).toList();
+    // debugPrint(_selectedProducts[0]);
+    // var _selectedProducts = _cultivars
+    //     .map((product) => (product, product.name))
+    //     .toList();
+    //List<Product> _selectedSeeds = [];
+    //List<Seeds>_selectedProducts = _cultivars;
+
+    final _multiSelectKey = GlobalKey<FormFieldState>();
+
+
     var inputMessage = 'Name:  '
         '$_nameText\n\n'
         'Address:  '
@@ -767,12 +793,13 @@ class _EnquiryState extends State<EnquiryUNI> {
         'Preferred Retailer:\n  '
         '$_retailer\n\n'
         'Seed Products:\n  '
-        '$_cultivars\n  '
-        '$_product1\n  '
-        '$_product2\n  '
-        '$_product3\n  '
-        '$_product4\n  '
-        '$_product5\n\n'
+        //'------ Products ------\n'
+        '$_selectedProducts\n  '
+        // '$_product1\n  '
+        // '$_product2\n  '
+        // '$_product3\n  '
+        // '$_product4\n  '
+        // '$_product5\n\n'
         'Seed to be mixed:  '
         '$_seedmixed\n\n'
         'Seed to be treated:  '
